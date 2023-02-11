@@ -1,5 +1,5 @@
 import PyPDF2
-
+import copy
 
 # Open and read a pdf file.
 file = open("C:\\Users\\eyas4\\Desktop\\Test1\\Test1.pdf", 'rb')
@@ -16,7 +16,7 @@ splitted_text = text.splitlines()
 
 # All the keywords, the default values is None.
 search_dictionary = {
-    'ÜRE': '', 'BUN': '', 'KREATİNİN': '', 'HGFH': '',
+    'PH': '', 'K+': '', 'NA+': '', 'CA2+': '', 'ÜRE': '', 'BUN': '', 'KREATİNİN': '', 'HGFH': '',
     'ÜRİK ASİT': '', 'SODYUM': '', 'POTASYUM': '',
     'KLORÜR': '', 'KALSİYUM': '', 'FOSFOR': '',
     'MAGNEZYUM': '', 'TOTAL PROTEİN': '', 'ALBÜMİN': '',
@@ -31,12 +31,19 @@ search_dictionary = {
     'BAZOFIL SAYISI': '', 'INR': '', 'APTT': ''
                     }
 
+# dictionary for synonyms.
+synonyms_dictionary = {
+    'SODYUM': 'NA+', 'POTASYUM': 'K+', 'KALSİYUM': 'CA2+'
+                        }
+
 # Unavailable tests.
 unavailable_tests = []
 
 # Compare each keyword with all the lines.
 for key in search_dictionary.keys():
     for line in splitted_text:
+        if 'KAN GAZLARI' in line:
+            line = ''
         if key in line:
             index = line.index(key)
             search_dictionary[key] = line[0: index - 1]
@@ -54,9 +61,20 @@ for i in unavailable_tests:
     if i in search_dictionary:
         del search_dictionary[i]
 
+# Delete the available synonyms from the unavilable_tests list.
+unavailable_tests_copy = copy.copy(unavailable_tests)
+for i in unavailable_tests_copy:
+    if i in synonyms_dictionary.values():
+        unavailable_tests.remove(i)
+        continue
+
 # Get the last key of the dictionary.
 search_dictionary_list = list(search_dictionary.keys())
-last_key = search_dictionary_list[-1]
+if search_dictionary_list:
+    last_key = search_dictionary_list[-1]
+else:
+    last_key = ''
+
 
 # Print the dictionary indexes.
 for key, value in search_dictionary.items():
