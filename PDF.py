@@ -2,7 +2,7 @@ import PyPDF2
 import copy
 
 # Open and read a pdf file.
-file = open("C:\\Users\\eyas4\\Desktop\\Test1\\Test1.pdf", 'rb')
+file = open("C:\\Users\\eyas4\\Desktop\\Test1\\Test.pdf", 'rb')
 reader = PyPDF2.PdfReader(file)
 
 # Take all the text from this pdf file and put it in single string.
@@ -64,7 +64,7 @@ for i in unavailable_tests:
 # Delete the available synonyms from the unavilable_tests list.
 unavailable_tests_copy = copy.copy(unavailable_tests)
 for i in unavailable_tests_copy:
-    if i in synonyms_dictionary.values():
+    if i in synonyms_dictionary.values() or i in synonyms_dictionary.keys():
         unavailable_tests.remove(i)
         continue
 
