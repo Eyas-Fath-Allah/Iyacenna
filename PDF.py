@@ -2,7 +2,7 @@ import PyPDF2
 import copy
 
 # Open and read a pdf file.
-file = open("C:\\Users\\eyas4\\Desktop\\Test1\\Test.pdf", 'rb')
+file = open("D:\\Test.pdf", 'rb')
 reader = PyPDF2.PdfReader(file)
 
 # Take all the text from this pdf file and put it in single string.
@@ -16,7 +16,7 @@ splitted_text = text.splitlines()
 
 # All the keywords, the default values is None.
 search_dictionary = {
-    'PH': '', 'K+': '', 'NA+': '', 'CA2+': '', 'ÜRE': '', 'BUN': '', 'KREATİNİN': '', 'HGFH': '',
+    'PH': '', 'ÜRE': '', 'BUN': '', 'KREATİNİN': '', 'HGFH': '',
     'ÜRİK ASİT': '', 'SODYUM': '', 'POTASYUM': '',
     'KLORÜR': '', 'KALSİYUM': '', 'FOSFOR': '',
     'MAGNEZYUM': '', 'TOTAL PROTEİN': '', 'ALBÜMİN': '',
@@ -28,7 +28,10 @@ search_dictionary = {
     'LÖKOSİT': '', 'ERİTROSİT': '', 'TROMBOSİT': '',
     'HEMOGLOBİN': '', 'HEMATOKRIT': '', 'NÖTROFIL SAYISI': '',
     'LENFOSIT SAYISI': '', 'MONOSIT SAYISI': '', 'EOZINOFIL SAYISI': '',
-    'BAZOFIL SAYISI': '', 'INR': '', 'APTT': ''
+    'BAZOFIL SAYISI': '', 'INR': '', 'APTT': '', 'CK-MB': '', 'MİYOGLOBİN': '', 'TROPONİN T': '', 'BNP': '',
+    'D-DİMER': '', 'FİBRİNOJEN': '', 'FERRİTİN': '', 'TRİGLİSERİD': '', 'KOLESTEROL VLDL': '', 'HDL KOLESTEROL': '',
+    'TOTAL KOLESTEROL': '', 'LDL KOLESTEROL': '', 'NON-HDL KOLESTEROL': '', 'UIBC': '', '%SATURASYON (Transferrin Saturasyonu)': '',
+    'B12 VİTAMİNİ': '', 'FOLİK ASİT': '', 'TSH': '', 'SERBEST T4': '', 'SERBEST T3': '',
                     }
 
 # dictionary for synonyms.
