@@ -2,7 +2,7 @@ import PyPDF2
 import copy
 
 # Open and read a pdf file.
-file = open("D:\\Test.pdf", 'rb')
+file = open("C:\\Users\\eyas4\\Desktop\\Test1\\mahi01.pdf", 'rb')
 reader = PyPDF2.PdfReader(file)
 
 # Take all the text from this pdf file and put it in single string.
@@ -22,16 +22,17 @@ search_dictionary = {
     'MAGNEZYUM': '', 'TOTAL PROTEİN': '', 'ALBÜMİN': '',
     'DİREKT BİLİRUBİN': '', 'TOTAL BİLİRUBİN': '',
     'İNDİREKT BİLİRUBİN': '', 'ASPARTAT AMİNOTRANSFERAZ': '',
-    'ALANİN AMİNOTRANSFERAZ': '',
-    'ALKALEN FOSFATAZ': '', 'GAMMA GLUTAMİL TRANSFERAZ': '',
+    'ALANİN AMİNOTRANSFERAZ': '', 'ALKALEN FOSFATAZ': '', 'GAMMA GLUTAMİL TRANSFERAZ': '',
     'LAKTAT DEHİDROGENAZ': '', 'CRP': '', 'PROKALSİTONİN': '',
     'LÖKOSİT': '', 'ERİTROSİT': '', 'TROMBOSİT': '',
     'HEMOGLOBİN': '', 'HEMATOKRIT': '', 'NÖTROFIL SAYISI': '',
     'LENFOSIT SAYISI': '', 'MONOSIT SAYISI': '', 'EOZINOFIL SAYISI': '',
-    'BAZOFIL SAYISI': '', 'INR': '', 'APTT': '', 'CK-MB': '', 'MİYOGLOBİN': '', 'TROPONİN T': '', 'BNP': '',
-    'D-DİMER': '', 'FİBRİNOJEN': '', 'FERRİTİN': '', 'TRİGLİSERİD': '', 'KOLESTEROL VLDL': '', 'HDL KOLESTEROL': '',
-    'TOTAL KOLESTEROL': '', 'LDL KOLESTEROL': '', 'NON-HDL KOLESTEROL': '', 'UIBC': '', '%SATURASYON (Transferrin Saturasyonu)': '',
-    'B12 VİTAMİNİ': '', 'FOLİK ASİT': '', 'TSH': '', 'SERBEST T4': '', 'SERBEST T3': '',
+    'BAZOFIL SAYISI': '', 'INR': '', 'APTT': '', 'CK-MB': '', 'MİYOGLOBİN': '',
+    'TROPONİN T': '', 'BNP': '', 'D-DİMER': '', 'FİBRİNOJEN': '', 'FERRİTİN': '',
+    'TRİGLİSERİD': '', 'KOLESTEROL VLDL': '', 'HDL KOLESTEROL': '', 'TOTAL KOLESTEROL': '',
+    'LDL KOLESTEROL': '', 'NON-HDL KOLESTEROL': '', 'UIBC': '', 'Transferrin Saturasyonu': '',
+    'TOTAL DEMİR BAĞLAMA KAPASİTESİ': '', 'SERUM DEMİRİ': '', 'B12 VİTAMİNİ': '',
+    'FOLİK ASİT': '', 'TSH': '', 'SERBEST T4': '', 'SERBEST T3': '',
                     }
 
 # dictionary for synonyms.
@@ -47,6 +48,10 @@ for key in search_dictionary.keys():
     for line in splitted_text:
         if 'KAN GAZLARI' in line:
             line = ''
+        if 'SERUM DEMİRİ VE TOTAL DEMİR' in line:
+            line = ''
+        if 'Transferrin Saturasyonu' in line:
+            line = line.replace('%SATURASYON (', '')
         if key in line:
             index = line.index(key)
             search_dictionary[key] = line[0: index - 1]
